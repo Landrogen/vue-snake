@@ -187,6 +187,7 @@
   })
   export default class Game extends Vue {
     private board: BoardModel = new Board(BOARD_SIZE.x, BOARD_SIZE.y);
+    private boardSizes: any = BOARD_SIZE;
     private snake: BoardCellModel[] = createSnake();
     private blocks: BoardCellModel[] = [];
     private fruit: BoardCellModel = createFruit(BOARD_SIZE.x, BOARD_SIZE.y);
@@ -295,7 +296,7 @@
     public moveFruit(): void {
       const {fruit} = this;
 
-      const newFruitPositions = getRandomCoors(BOARD_SIZE.x, BOARD_SIZE.y);
+      const newFruitPositions = getRandomCoors(this.boardSizes.x, this.boardSizes.y);
       fruit.x = newFruitPositions.x;
       fruit.y = newFruitPositions.y;
     }
