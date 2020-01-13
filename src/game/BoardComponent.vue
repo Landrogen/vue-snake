@@ -1,8 +1,8 @@
 <template>
-    <div class="board">
+    <div class="board" :style="`--size: ${width}`">
         <template v-for="y in board">
             <div class="board__row">
-                <BoardCell v-for="x in y" :cell="x" :size="size"/>
+                <BoardCell v-for="x in y" :cell="x" />
             </div>
         </template>
     </div>
@@ -12,7 +12,6 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
 import {BoardSizeModel} from '@/models/boardSize.model';
 import BoardCell from './components/BoardCell.vue';
-import {BoardCellTypes} from '@/types/BoardCellTypes';
 
 @Component({
   components: {
@@ -22,6 +21,15 @@ import {BoardCellTypes} from '@/types/BoardCellTypes';
 export default class BoardComponent extends Vue {
   @Prop() private board!: BoardSizeModel;
   @Prop() private size!: BoardSizeModel;
+
+  get width() {
+    const {x, y} = this.size;
+    if (x >= y) {
+      return `calc(90vmin / ${x} )`;
+    } else {
+      return `calc(90vmin / ${y} )`;
+    }
+  }
 }
 </script>
 

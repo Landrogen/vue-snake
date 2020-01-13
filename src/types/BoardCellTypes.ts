@@ -2,5 +2,7 @@ export enum BoardCellTypes {
   EMPTY,
   FRUIT,
   SNAKE,
-  SNAKEHEAD,
+  SNAKE_HEAD,
+  BLOCK,
+  SNAKE_GHOST,
 }
